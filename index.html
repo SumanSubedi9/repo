@@ -17,12 +17,39 @@
       <ul class="journal">
         <form class="form hidden">
           <div class="form_row">
+            <label class="form__label">Name</label>
+            <input
+              type="text"
+              class="form__input form__input--name"
+              placeholder="Name"
+            />
+          </div>
+          <div class="form_row">
             <label class="form__label">Type</label>
             <select class="form__input form__input--type">
               <option value="visited">Visited</option>
               <option value="traveling">Traveling</option>
             </select>
           </div>
+
+          <div class="form_row">
+            <label class="form__label">Description</label>
+            <input
+              type="text"
+              class="form__input form__input--description"
+              placeholder="Description"
+            />
+          </div>
+
+          <div class="form_row">
+            <label class="form__label">Date</label>
+            <input
+              type="date"
+              class="form__input form__input--date"
+              placeholder="Date"
+            />
+          </div>
+
           <button class="form__btn">OK</button>
         </form>
       </ul>
