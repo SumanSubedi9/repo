@@ -48,3 +48,35 @@ body {
   flex-direction: column;
 
 }
+
+.form{
+  background-color: var(--color-dark--2);
+  border-radius: 5px;
+  padding: 1.5rem 2.5rem;
+  margin-bottom: 1.75rem;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  height: 9.25rem;;
+}
+
+.form__input{
+  width: 100%;
+  font-family: inherit;
+  font-size: 1.4rem;
+  border: none;
+  border-radius: 3px;
+  background-color: var(--color-light--3);
+}
+
+.form__input:focus{
+  outline: none;
+  background-color: #fff;
+
+}
+
+.form__btn{
+  display: none;
+}
+
