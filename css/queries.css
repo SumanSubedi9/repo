@@ -1,0 +1,17 @@
+/* Tablets Below 944 px */
+
+@media (max-width: 59em) {
+  .sidebar {
+    height: 35vh;
+    flex-basis: 100rem;
+    margin-top: auto;
+  }
+}
+
+/* PHONES BELOW 544 px */
+
+@media (max-width: 34em) {
+  .sidebar {
+    height: 35vh;
+  }
+}
