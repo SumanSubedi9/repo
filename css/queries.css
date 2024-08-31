@@ -12,14 +12,24 @@
 
 @media (max-width: 34em) {
   body {
+    padding: 0;
+    margin: 0;
+    flex-direction: column;
     overscroll-behavior-x: none;
   }
 
   .sidebar {
-    height: 35vh;
+    height: auto;
+    order: 2;
   }
 
   .form {
-    display: inline-block;
+    display: block;
+  }
+
+  #map {
+    order: 1;
+    height: 40vh;
+    width: 100vh;
   }
 }

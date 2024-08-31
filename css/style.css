@@ -105,3 +105,9 @@ body {
   display: none;
 }
 
+#map { 
+  flex: 1;
+  height: 100%;
+
+ }
+
