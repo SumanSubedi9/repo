@@ -1,35 +1,33 @@
 /* Tablets Below 944 px */
 
 @media (max-width: 59em) {
+  body {
+    padding: 0;
+    margin: 0;
+    overscroll-behavior-x: none;
+    flex-direction: column !important;
+  }
   .sidebar {
-    height: 35vh;
-    flex-basis: 100rem;
-    margin-top: auto;
+    order: 2;
+    height: 25vh;
+    flex-basis: 35rem;
+  }
+  #map {
+    order: 1;
+    height: 100vh;
+    width: 100vw;
   }
 }
 
 /* PHONES BELOW 544 px */
 
 @media (max-width: 34em) {
-  body {
-    padding: 0;
-    margin: 0;
-    flex-direction: column;
-    overscroll-behavior-x: none;
-  }
-
   .sidebar {
-    height: auto;
     order: 2;
+    height: 25vh;
   }
 
   .form {
     display: block;
-  }
-
-  #map {
-    order: 1;
-    height: 40vh;
-    width: 100vh;
   }
 }
