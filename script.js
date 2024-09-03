@@ -9,51 +9,72 @@ const inputDate = document.querySelector(".form__input--date");
 
 let map, mapEvent;
 
-navigator.geolocation.getCurrentPosition(
-  function (position) {
+class App {
+  // Private Properties
+  #map;
+  #mapEvent;
+
+  // Constructor function gets executed first when the page loads
+  constructor() {
+    this._getPosition();
+    // Event listener for when the submit button is clicked
+    form.addEventListener("submit", this._newJournal.bind(this));
+  }
+  // Gets the current Position and calls the _loadMap method
+  _getPosition() {
+    navigator.geolocation.getCurrentPosition(
+      this._loadMap.bind(this),
+      function () {
+        alert("Could not get your position");
+      }
+    );
+  }
+
+  // Load the map with the current position
+
+  _loadMap(position) {
     const { latitude } = position.coords;
     const { longitude } = position.coords;
-    map = L.map("map").setView([latitude, longitude], 13);
+    this.#map = L.map("map").setView([latitude, longitude], 13);
 
     L.tileLayer("https://tile.openstreetmap.fr/hot/{z}/{x}/{y}.png", {
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    }).addTo(map);
+    }).addTo(this.#map);
 
-    // Event for when you click on the map
+    // Calls the _showForm method when user clicks on the map
 
-    map.on("click", function (mapE) {
-      mapEvent = mapE;
-      form.classList.remove("hidden");
-      inputName.focus(); // Focuses on input Name while loading the page
-    });
-  },
-
-  function () {
-    alert("Could not get your position");
+    this.#map.on("click", this._showForm.bind(this));
   }
-);
 
-// Event for when you submit the form
+  _showForm(mapE) {
+    this.#mapEvent = mapE;
+    form.classList.remove("hidden");
+    inputName.focus();
+  }
 
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
+  _newJournal(e) {
+    // Event for when you submit the form
+    e.preventDefault();
 
-  // Clear input fields
-  inputName.value = inputDescription.value = inputDate.value = "";
+    // Clear input fields
+    inputName.value = inputDescription.value = inputDate.value = "";
 
-  const { lat, lng } = mapEvent.latlng;
-  L.marker([lat, lng])
-    .addTo(map)
-    .bindPopup(
-      L.popup({
-        maxWidth: 250,
-        minWidth: 100,
-        autoClose: false,
-        closeOnClick: false,
-        className: "visited-popup",
-      })
-    )
-    .setPopupContent("Visited")
-    .openPopup();
-});
+    const { lat, lng } = this.#mapEvent.latlng;
+    L.marker([lat, lng])
+      .addTo(this.#map)
+      .bindPopup(
+        L.popup({
+          maxWidth: 250,
+          minWidth: 100,
+          autoClose: false,
+          closeOnClick: false,
+          className: "visited-popup",
+        })
+      )
+      .setPopupContent("Visited")
+      .openPopup();
+  }
+}
+
+const app = new App();
