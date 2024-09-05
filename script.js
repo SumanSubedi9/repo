@@ -9,6 +9,28 @@ const inputDate = document.querySelector(".form__input--date");
 
 let map, mapEvent;
 
+class Journal {
+
+  id = ()
+  constructor(coords, description, date) {
+    this.coords = coords; // [lat, lang]
+    this.description = description;
+    this.date = date;
+  }
+}
+
+class Visited extends Journal{
+  constructor(coords, description, date) {
+    super(coords, description, date);
+    
+  }
+}
+class Traveling extends Journal{
+  constructor(coords, description, date) {
+    super(coords, description, date);
+  }
+}
+
 class App {
   // Private Properties
   #map;
