@@ -10,8 +10,7 @@ const inputDate = document.querySelector(".form__input--date");
 let map, mapEvent;
 
 class Journal {
-
-  id = ()
+  id = (Date.now() + "").slice(-10); // making a unique id
   constructor(coords, description, date) {
     this.coords = coords; // [lat, lang]
     this.description = description;
@@ -19,13 +18,12 @@ class Journal {
   }
 }
 
-class Visited extends Journal{
+class Visited extends Journal {
   constructor(coords, description, date) {
     super(coords, description, date);
-    
   }
 }
-class Traveling extends Journal{
+class Traveling extends Journal {
   constructor(coords, description, date) {
     super(coords, description, date);
   }
@@ -78,6 +76,16 @@ class App {
   _newJournal(e) {
     // Event for when you submit the form
     e.preventDefault();
+
+    // Get data from form
+
+    //Check if data is wild
+
+    // If Visited place, create visited object
+
+    // If traveling, create travelling object
+
+    // Add new object to Journal Array
 
     // Clear input fields
     inputName.value = inputDescription.value = inputDate.value = "";
