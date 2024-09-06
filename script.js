@@ -19,11 +19,13 @@ class Journal {
 }
 
 class Visited extends Journal {
+  type = "Visited";
   constructor(coords, description, date) {
     super(coords, description, date);
   }
 }
 class Traveling extends Journal {
+  type = "Traveling";
   constructor(coords, description, date) {
     super(coords, description, date);
   }
@@ -33,6 +35,7 @@ class App {
   // Private Properties
   #map;
   #mapEvent;
+  #journals = [];
 
   // Constructor function gets executed first when the page loads
   constructor() {
@@ -78,20 +81,38 @@ class App {
     e.preventDefault();
 
     // Get data from form
+    const type = inputType.value;
+    const name = inputName.value;
+    const description = inputDescription.value;
+    const date = inputDate.value;
+    const { lat, lng } = this.#mapEvent.latlng;
+    let journal;
 
-    //Check if data is wild
+    // Create new object
 
     // If Visited place, create visited object
+    if (type === "visited") {
+      journal = new Visited([lat, lng], description, date);
+    }
 
     // If traveling, create travelling object
+    if (type === "traveling") {
+      journal = new Traveling([lat, lng], description, date);
+    }
 
     // Add new object to Journal Array
+    this.#journals.push(journal);
+    console.log(journal);
+
+    //Render Journal on a map as a marker
+    this.renderJournalMarker(journal);
 
     // Clear input fields
     inputName.value = inputDescription.value = inputDate.value = "";
+  }
 
-    const { lat, lng } = this.#mapEvent.latlng;
-    L.marker([lat, lng])
+  renderJournalMarker(journal) {
+    L.marker(journal.coords)
       .addTo(this.#map)
       .bindPopup(
         L.popup({
@@ -99,10 +120,10 @@ class App {
           minWidth: 100,
           autoClose: false,
           closeOnClick: false,
-          className: "visited-popup",
+          className: `${journal.type}--popup`,
         })
       )
-      .setPopupContent("Visited")
+      .setPopupContent(`${journal.type}`)
       .openPopup();
   }
 }
