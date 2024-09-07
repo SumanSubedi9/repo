@@ -105,13 +105,15 @@ class App {
     console.log(journal);
 
     //Render Journal on a map as a marker
-    this.renderJournalMarker(journal);
+    this._renderJournalMarker(journal);
+
+    this._renderJournal(journal);
 
     // Clear input fields
     inputName.value = inputDescription.value = inputDate.value = "";
   }
 
-  renderJournalMarker(journal) {
+  _renderJournalMarker(journal) {
     L.marker(journal.coords)
       .addTo(this.#map)
       .bindPopup(
@@ -126,6 +128,8 @@ class App {
       .setPopupContent(`${journal.type}`)
       .openPopup();
   }
+
+  _renderJournal(journal) {}
 }
 
 const app = new App();
