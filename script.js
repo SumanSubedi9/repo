@@ -102,6 +102,12 @@ class App {
 
     // Create new object
 
+    // Form validation
+    if (name === "" || description === "" || date === "") {
+      alert("Please fill in all fields");
+      return;
+    }
+
     // If Visited place, create visited object
     if (type === "visited") {
       journal = new Visited([lat, lng], description, date, name);
@@ -140,7 +146,9 @@ class App {
           className: `${journal.type}--popup`,
         })
       )
-      .setPopupContent(`${journal.type}`)
+      .setPopupContent(
+        `${journal.type === "visited" ? "✅" : "🚗"} ${journal.name}`
+      )
       .openPopup();
   }
 
