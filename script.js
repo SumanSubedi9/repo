@@ -11,8 +11,9 @@ let map, mapEvent;
 
 class Journal {
   id = (Date.now() + "").slice(-10); // making a unique id
-  constructor(coords, description, date) {
+  constructor(coords, description, date, name) {
     this.coords = coords; // [lat, lang]
+    this.name = name;
     this.description = description;
     this.date = date;
   }
@@ -20,14 +21,14 @@ class Journal {
 
 class Visited extends Journal {
   type = "visited";
-  constructor(coords, description, date) {
-    super(coords, description, date);
+  constructor(coords, description, date, name) {
+    super(coords, description, date, name);
   }
 }
 class Traveling extends Journal {
   type = "traveling";
-  constructor(coords, description, date) {
-    super(coords, description, date);
+  constructor(coords, description, date, name) {
+    super(coords, description, date, name);
   }
 }
 
@@ -92,12 +93,12 @@ class App {
 
     // If Visited place, create visited object
     if (type === "visited") {
-      journal = new Visited([lat, lng], description, date);
+      journal = new Visited([lat, lng], description, date, name);
     }
 
     // If traveling, create travelling object
     if (type === "traveling") {
-      journal = new Traveling([lat, lng], description, date);
+      journal = new Traveling([lat, lng], description, date, name);
     }
 
     // Add new object to Journal Array
@@ -129,7 +130,29 @@ class App {
       .openPopup();
   }
 
-  _renderJournal(journal) {}
+  _renderJournal(journal) {
+    const html = `
+    <li class="journal journal--${journal.type}" data-id="${journal.id}">
+      <h2 class="journal_title">${journal.name}</h2>
+      <div class="journal_details">
+      <span class="journal_icon">${
+        journal.type === "visited" ? "✅" : "🚗"
+      }</span>
+      </div>
+      <div class="journal_details">
+      <span class="journal_icon">📖</span>
+      <span class+"journal_description">${journal.description}</span>
+      </div>
+      <div class="journal_details">
+      <span class="journal_icon">📅</span>
+      <span class="journal_date">${journal.date}</span>
+      </div>
+
+    </li>
+    `;
+
+    form.insertAdjacentHTML("afterend", html);
+  }
 }
 
 const app = new App();

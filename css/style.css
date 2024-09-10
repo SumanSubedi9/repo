@@ -139,7 +139,7 @@ body {
   border-left: 5px solid var(--success-color);
  }
 
-.traveling--popup .leaflet-popup-content-wrapper{
+.raveling--popup .leaflet-popup-content-wrapper{
  border-left: 5px solid var(--color-brand--1);
  }
 
