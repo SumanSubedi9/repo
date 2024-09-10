@@ -77,6 +77,13 @@ class App {
     inputName.focus();
   }
 
+  _hideForm() {
+    // Clears the input fields
+    inputName.value = inputDescription.value = inputDate.value = "";
+    // Hides the form
+    form.classList.add("hidden");
+  }
+
   _newJournal(e) {
     // Event for when you submit the form
     e.preventDefault();
@@ -109,6 +116,9 @@ class App {
     this._renderJournalMarker(journal);
 
     this._renderJournal(journal);
+
+    // Hide form
+    this._hideForm();
 
     // Clear input fields
     inputName.value = inputDescription.value = inputDate.value = "";
