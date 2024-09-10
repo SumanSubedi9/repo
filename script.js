@@ -19,13 +19,13 @@ class Journal {
 }
 
 class Visited extends Journal {
-  type = "Visited";
+  type = "visited";
   constructor(coords, description, date) {
     super(coords, description, date);
   }
 }
 class Traveling extends Journal {
-  type = "Traveling";
+  type = "traveling";
   constructor(coords, description, date) {
     super(coords, description, date);
   }

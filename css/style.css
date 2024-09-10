@@ -135,11 +135,11 @@ body {
 
 
 
-.visited-popup .leaflet-popup-content-wrapper{
+.visited--popup .leaflet-popup-content-wrapper{
   border-left: 5px solid var(--success-color);
  }
 
-.traveling-popup .leaflet-popup-content-wrapper{
+.traveling--popup .leaflet-popup-content-wrapper{
  border-left: 5px solid var(--color-brand--1);
  }
 
