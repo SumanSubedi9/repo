@@ -81,7 +81,11 @@ class App {
     // Clears the input fields
     inputName.value = inputDescription.value = inputDate.value = "";
     // Hides the form
+    form.style.display = "none";
     form.classList.add("hidden");
+    setTimeout(() => {
+      (form.style.display = "grid"), 1000;
+    });
   }
 
   _newJournal(e) {
@@ -148,6 +152,7 @@ class App {
       <span class="journal_icon">${
         journal.type === "visited" ? "✅" : "🚗"
       }</span>
+      <span class="journal_type">${journal.type}</span>
       </div>
       <div class="journal_details">
       <span class="journal_icon">📖</span>
