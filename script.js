@@ -6,6 +6,7 @@ const inputName = document.querySelector(".form__input--name");
 const inputType = document.querySelector(".form__input--type");
 const inputDescription = document.querySelector(".form__input--description");
 const inputDate = document.querySelector(".form__input--date");
+const containerJournals = document.querySelector(".journals");
 
 let map, mapEvent;
 
@@ -43,6 +44,7 @@ class App {
     this._getPosition();
     // Event listener for when the submit button is clicked
     form.addEventListener("submit", this._newJournal.bind(this));
+    containerJournals.addEventListener("click", this._moveToPopup.bind(this));
   }
   // Gets the current Position and calls the _loadMap method
   _getPosition() {
@@ -175,6 +177,24 @@ class App {
     `;
 
     form.insertAdjacentHTML("afterend", html);
+  }
+
+  _moveToPopup(e) {
+    const journalEL = e.target.closest(".journal");
+    console.log(journalEL);
+
+    if (!journalEL) return;
+    const journal = this.#journals.find(
+      (journal) => journal.id === journalEL.dataset.id
+    );
+    console.log(journal);
+
+    this.#map.setView(journal.coords, 13, {
+      animate: true,
+      pan: {
+        duration: 1,
+      },
+    });
   }
 }
 

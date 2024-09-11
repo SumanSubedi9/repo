@@ -49,7 +49,7 @@ body {
 
 }
 
-.journal{
+.journals{
   list-style: none;
   height: 77vh;
   overflow-y: scroll;
@@ -57,6 +57,39 @@ body {
 
 
 }
+
+.journal{
+  background-color: var(--color-dark--2);
+  border-radius: 5px;
+  padding: 1.5rem 2.5rem;
+  margin-bottom: 1.75rem;
+  cursor: pointer;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 0.7rem 1.5rem;
+
+
+}
+
+.journal_details{
+  display: flex;
+  align-items: baseline;
+}
+.journal_title{
+  font-size: 1.7rem;
+  font-weight: 600;
+  grid-column: 1 / -1;
+}
+
+
+.journal_icon{
+  font-size: 1.8rem;
+  margin-right: 0.2rem;
+  height: 0.28rem;
+}
+
+
 
 
 .form{
@@ -133,7 +166,9 @@ body {
   background-color: var(--color-dark--1);
  }
 
-
+.leaflet-popup .leaflet-popup-content{
+  font-size: 1.5rem;
+ }
 
 .visited--popup .leaflet-popup-content-wrapper{
   border-left: 5px solid var(--success-color);
