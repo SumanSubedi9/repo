@@ -41,7 +41,12 @@ class App {
 
   // Constructor function gets executed first when the page loads
   constructor() {
+    // Get users position
     this._getPosition();
+
+    // Get data from Local Storage
+    this._getLocalStorage();
+
     // Event listener for when the submit button is clicked
     form.addEventListener("submit", this._newJournal.bind(this));
     containerJournals.addEventListener("click", this._moveToPopup.bind(this));
@@ -71,6 +76,7 @@ class App {
     // Calls the _showForm method when user clicks on the map
 
     this.#map.on("click", this._showForm.bind(this));
+    this.#journals.forEach((j) => this._renderJournalMarker(j));
   }
 
   _showForm(mapE) {
@@ -134,6 +140,9 @@ class App {
 
     // Clear input fields
     inputName.value = inputDescription.value = inputDate.value = "";
+
+    // Set local storage to all journals
+    this._setLocalStorage();
   }
 
   _renderJournalMarker(journal) {
@@ -195,6 +204,19 @@ class App {
         duration: 1,
       },
     });
+  }
+
+  _setLocalStorage() {
+    localStorage.setItem("journals", JSON.stringify(this.#journals));
+  }
+  _getLocalStorage() {
+    const data = JSON.parse(localStorage.getItem("journals"));
+
+    if (!data) return;
+
+    this.#journals = data;
+
+    this.#journals.forEach((j) => this._renderJournal(j));
   }
 }
 
